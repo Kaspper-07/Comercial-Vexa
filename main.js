@@ -20,11 +20,27 @@ function throttle(fn, wait){
 
 // ===== Header sticky + sombra =====
 const header = document.querySelector('.header');
+let scrollProgress;
+if(header){
+  scrollProgress = document.createElement('span');
+  scrollProgress.id = 'scroll-progress';
+  header.appendChild(scrollProgress);
+}
+
+function updateScrollProgress(){
+  if(!scrollProgress) return;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0;
+  scrollProgress.style.width = `${ratio * 100}%`;
+}
+
 const onScrollHeader = throttle(()=>{
   if(window.scrollY > 10){ header?.classList.add('is-scrolled'); }
   else { header?.classList.remove('is-scrolled'); }
+  updateScrollProgress();
 }, 100);
 window.addEventListener('scroll', onScrollHeader);
+updateScrollProgress();
 
 // ===== Menú móvil =====
 const navToggle = document.getElementById('nav-toggle');
@@ -77,21 +93,37 @@ const io = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 
 // ===== Counters (stats del hero) =====
-function animateCounter(el, to){
-  const dur = 1200; const start = performance.now();
+function animateCounter(el, cfg){
+  const { value, prefix = '', suffix = '' } = cfg;
+  const dur = 1400; const start = performance.now();
   function step(now){
     const p = Math.min((now - start)/dur, 1);
-    el.textContent = Math.floor(p * to).toLocaleString('es-MX');
+    const current = Math.floor(p * value).toLocaleString('es-MX');
+    el.textContent = `${prefix}${current}${suffix}`;
     if(p<1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 const statMap = new Map();
 document.querySelectorAll('.hero-stats strong').forEach(str=>{
-  const raw = (str.textContent||'').replace(/[^0-9]/g, '');
-  const val = Number(raw||0) || 0;
-  str.textContent = '0';
-  statMap.set(str, val);
+  const original = (str.textContent || '').trim();
+  const digits = original.match(/[0-9]+/g);
+  if(!digits){
+    str.dataset.static = original;
+    return;
+  }
+  const numericValue = Number(digits.join(''));
+  if(!Number.isFinite(numericValue)){
+    str.dataset.static = original;
+    return;
+  }
+  const firstIdx = original.indexOf(digits[0]);
+  const lastChunk = digits[digits.length - 1];
+  const lastIdx = original.lastIndexOf(lastChunk) + lastChunk.length;
+  const prefix = original.slice(0, firstIdx);
+  const suffix = original.slice(lastIdx);
+  str.textContent = `${prefix}0${suffix}`;
+  statMap.set(str, { value:numericValue, prefix, suffix });
 });
 const statsObserver = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -138,35 +170,20 @@ function setupAccordions(root=document){
       const panel = item.querySelector('.acc-panel');
       if(!trigger || !panel) return;
 
-      // Medición para transición suave
       const measure = ()=> {
         panel.style.maxHeight = panel.hidden ? '0px' : panel.scrollHeight + 'px';
       };
-      // Estado inicial
+
       panel.hidden = true;
       panel.style.maxHeight = '0px';
 
       trigger.addEventListener('click', ()=>{
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        // Cerrar otros (acordeón exclusivo)
-        items.forEach(other=>{
-          if(other !== item){
-            const t2 = other.querySelector('.acc-trigger');
-            const p2 = other.querySelector('.acc-panel');
-            if(t2 && p2){
-              t2.setAttribute('aria-expanded','false');
-              p2.hidden = true;
-              p2.style.maxHeight = '0px';
-            }
-          }
-        });
-        // Toggle actual
         trigger.setAttribute('aria-expanded', String(!expanded));
         panel.hidden = expanded;
         measure();
       });
 
-      // Recalcular al redimensionar
       new ResizeObserver(()=> measure()).observe(panel);
     });
   });
