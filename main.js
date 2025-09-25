@@ -45,9 +45,24 @@ updateScrollProgress();
 // ===== Menú móvil =====
 const navToggle = document.getElementById('nav-toggle');
 const menu = document.querySelector('.menu');
-navToggle?.addEventListener('click', ()=> menu?.classList.toggle('open'));
+const closeMenu = ()=>{
+  menu?.classList.remove('open');
+  if(navToggle){
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+  }
+};
+
+if(navToggle){
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.addEventListener('click', ()=>{
+    const isOpen = !!menu?.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  });
+}
 // Cerrar menú al seleccionar un link
-menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=> menu.classList.remove('open')));
+menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
 
 // ===== Smooth scroll (offset header) =====
 const OFFSET = 90; // coincide con header alto
@@ -216,5 +231,5 @@ form?.addEventListener('submit', async (e)=>{
 
 // ===== Accesibilidad extra =====
 window.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape'){ menu?.classList.remove('open'); }
+  if(e.key === 'Escape'){ closeMenu(); }
 });

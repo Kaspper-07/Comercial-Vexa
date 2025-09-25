@@ -118,6 +118,7 @@ button:focus-visible,
 
 /* ===== Responsive navbar ===== */
 @media (max-width: 980px){
+  .header{overflow:visible}
   .nav{height:92px; gap:20px}
   .brand span{font-size:1.1rem}
   .logo{height:70px}
@@ -129,6 +130,7 @@ button:focus-visible,
     display:none; flex-direction:column; align-items:flex-start;
     padding:20px 24px; gap:20px; font-size:1.2rem;
     flex:unset; justify-content:flex-start;
+    z-index:1200;
   }
   .menu.open{display:flex}
   .menu .btn-primary{align-self:stretch; text-align:center}
