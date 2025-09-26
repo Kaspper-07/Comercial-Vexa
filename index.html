@@ -14,6 +14,16 @@
   <body>
     <!-- ===== Header ===== -->
     <header id="site-header" class="header">
+      <div class="topbar">
+        <div class="container topbar-inner">
+          <span class="topbar-tag">Atención a empresas y gobierno</span>
+          <div class="topbar-contact">
+            <a href="mailto:administracion@gcvexa.com">administracion@gcvexa.com</a>
+            <span class="separator" aria-hidden="true">•</span>
+            <span>CDMX · Cobertura nacional</span>
+          </div>
+        </div>
+      </div>
       <div class="container nav">
         <a href="#" class="brand">
           <img src="./img/logo.png" alt="Grupo Comercial Vexa" class="logo" />
@@ -25,7 +35,8 @@
           <a href="#lineas">Productos</a>
           <a href="#servicios">Servicios</a>
           <a href="#capacidades">Capacidades</a>
-          <a href="#contacto" class="btn btn-primary">Contacto</a>
+          <a href="#indicadores">Indicadores</a>
+          <a href="#contacto">Contacto</a>
         </nav>
         <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
       </div>
@@ -33,41 +44,56 @@
 
     <!-- ===== Hero ===== -->
     <section id="inicio" class="hero hero-vexa">
-      <div class="hero-bg">
-        <div class="hero-radial"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-particles">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="hero-orb orb-1"></div>
-        <div class="hero-orb orb-2"></div>
+      <video class="hero-video" src="./img/hero-bg.mp4" autoplay muted loop playsinline></video>
+      <div class="hero-gradient"></div>
+      <div class="hero-visuals" aria-hidden="true">
+        <span class="hero-orb orb-1"></span>
+        <span class="hero-orb orb-2"></span>
+        <span class="hero-orb orb-3"></span>
+        <span class="hero-spark spark-1"></span>
+        <span class="hero-spark spark-2"></span>
+        <span class="hero-spark spark-3"></span>
+        <span class="hero-spark spark-4"></span>
+        <span class="hero-spark spark-5"></span>
       </div>
       <div class="container hero-inner">
-        <div class="hero-content glass">
-          <h1 class="typewriter"><span class="highlight">En Grupo Comercial Vexa</span> integramos comercio mayorista con talento tecnológico y gestoría especializada</h1>
-          <p>Abastecemos cristalería, línea blanca, electrónica, mobiliario, insumos industriales y soluciones creativas mientras coordinamos servicios de TI, consultoría, logística y proyectos llave en mano para entidades públicas y privadas.</p>
+        <div class="hero-copy">
+          <div class="hero-copy-panel"></div>
+          <span class="hero-eyebrow">Distribución mayorista • Servicios llave en mano</span>
+          <h1><span class="highlight">Grupo Comercial Vexa</span> abastece proyectos empresariales y gubernamentales con logística, tecnología y gestoría especializada</h1>
+          <p>Integramos bienes de consumo, equipamiento profesional y servicios corporativos para entregar soluciones completas: catálogo amplio, documentación en regla y acompañamiento experto en cada etapa.</p>
+          <ul class="hero-stats">
+            <li>
+              <strong>+1 000</strong>
+              <span>Líneas y familias de producto</span>
+            </li>
+            <li>
+              <strong>24</strong>
+              <span>Horas promedio de respuesta a licitaciones</span>
+            </li>
+            <li>
+              <strong>360°</strong>
+              <span>Comercio • Tecnología • Gestoría</span>
+            </li>
+          </ul>
         </div>
-        <ul class="hero-stats">
-          <li><strong>+1 000</strong><span>Líneas y familias de producto</span></li>
-          <li><strong>Multisector</strong><span>Consumo • Industria • Servicios</span></li>
-          <li><strong>360°</strong><span>Comercio • TI • Gestoría</span></li>
-        </ul>
+        <div class="hero-media">
+          <figure class="hero-figure">
+            <img src="./img/servicios-logistica.jpg" alt="Equipo coordinando operaciones logísticas" loading="lazy" />
+          </figure>
+          <div class="hero-note">
+            <h3>Proyectos integrales</h3>
+            <p>Unimos abastecimiento, servicios especializados y soporte documental en una misma propuesta.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ===== Nosotros ===== -->
     <section id="nosotros" class="section reveal">
       <div class="container grid-2">
-        <div>
+        <div class="section-copy">
+          <span class="eyebrow">Quiénes somos</span>
           <h2>Nosotros</h2>
           <p>En <strong>Grupo Comercial Vexa</strong> articulamos un ecosistema comercial que abarca fabricación, representación, importación y distribución de bienes de consumo, equipos especializados e insumos industriales. Nuestra red de proveedores certificados nos permite atender licitaciones, proyectos corporativos y cadenas comerciales con inventarios controlados, trazabilidad y cobertura nacional.</p>
           <p>Complementamos el portafolio con servicios profesionales en tecnologías de la información, consultoría organizacional, logística integral y gestoría corporativa, acompañando desde el diseño de la solución hasta la implementación, capacitación y soporte postventa.</p>
@@ -75,7 +101,7 @@
           <p><strong>Visión.</strong> Consolidarnos como referente en México por la solidez de nuestros procesos comerciales, la innovación tecnológica y la confiabilidad de nuestra gestión corporativa.</p>
           <p><strong>Valores.</strong> Ética, transparencia, orientación a resultados, colaboración, seguridad de la información y mejora continua.</p>
         </div>
-        <aside class="card">
+        <aside class="card shadow">
           <h3>Fortalezas</h3>
           <ul class="checklist">
             <li>Catálogo multisector que integra consumo, industria y servicios especializados.</li>
@@ -92,8 +118,11 @@
     <!-- ===== Productos ===== -->
     <section id="lineas" class="section alt reveal">
       <div class="container">
-        <h2>Productos</h2>
-        <p class="lead">Surtimos desde artículos de uso cotidiano hasta equipamiento especializado, integrando abastecimiento nacional e importado con control logístico, garantías y documentación para proyectos empresariales y gubernamentales.</p>
+        <div class="section-header align-center">
+          <span class="eyebrow">Líneas de negocio</span>
+          <h2>Productos</h2>
+          <p class="lead">Surtimos desde artículos de uso cotidiano hasta equipamiento especializado, integrando abastecimiento nacional e importado con control logístico, garantías y documentación para proyectos empresariales y gubernamentales.</p>
+        </div>
         <div class="cards grid-3">
           <article class="card">
             <div class="card-icon" aria-hidden="true">
@@ -202,10 +231,66 @@
       </div>
     </section>
 
+    <!-- ===== Sectores ===== -->
+    <section id="sectores" class="section reveal">
+      <div class="container">
+        <div class="section-header align-center">
+          <span class="eyebrow">Cobertura de mercado</span>
+          <h2>Sectores que atendemos</h2>
+          <p class="lead">Acompañamos a organizaciones públicas y privadas en proyectos de equipamiento, abastecimiento estratégico y servicios especializados, adaptando catálogos y esquemas de entrega a cada industria.</p>
+        </div>
+        <div class="sector-grid">
+          <article class="card sector-card">
+            <span class="sector-icon" aria-hidden="true">🏛️</span>
+            <h3>Gobierno y sector público</h3>
+            <p>Soportamos licitaciones, compras consolidadas y contratos marco con documentación completa, seguimiento a indicadores y entregas multi-sede.</p>
+            <ul>
+              <li>Dependencias federales, estatales y municipales.</li>
+              <li>Institutos de salud, educación y seguridad.</li>
+              <li>Programas sociales y equipamiento comunitario.</li>
+            </ul>
+          </article>
+          <article class="card sector-card">
+            <span class="sector-icon" aria-hidden="true">🏢</span>
+            <h3>Corporativo y financiero</h3>
+            <p>Integración de mobiliario, tecnología y suministros para sedes administrativas, centros de datos y puntos de atención al cliente.</p>
+            <ul>
+              <li>Equipamiento de oficinas, salas ejecutivas y coworking.</li>
+              <li>Infraestructura TI administrada y servicios gestionados.</li>
+              <li>Kits de bienvenida, promoción y eventos internos.</li>
+            </ul>
+          </article>
+          <article class="card sector-card">
+            <span class="sector-icon" aria-hidden="true">🛍️</span>
+            <h3>Retail, hospitality y experiencias</h3>
+            <p>Soluciones llave en mano para tiendas, hoteles, restaurantes y marcas que requieren ambientación, exhibición y campañas itinerantes.</p>
+            <ul>
+              <li>Diseño y montaje de piso de venta y showrooms.</li>
+              <li>Material POP, audio, iluminación y señalética.</li>
+              <li>Coordinación logística para eventos y activaciones.</li>
+            </ul>
+          </article>
+          <article class="card sector-card">
+            <span class="sector-icon" aria-hidden="true">⚙️</span>
+            <h3>Industria, construcción y energía</h3>
+            <p>Abastecimiento robusto para plantas productivas, obras civiles y proyectos de infraestructura con soporte técnico y garantía.</p>
+            <ul>
+              <li>Consumibles, herramientas y seguridad industrial.</li>
+              <li>Equipos especializados, refacciones y mantenimiento.</li>
+              <li>Importaciones, inspecciones y logística nacional.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== Servicios (ACORDEONES) ===== -->
     <section id="servicios" class="section reveal">
       <div class="container">
-        <h2>Servicios</h2>
+        <div class="section-header">
+          <span class="eyebrow">Acompañamiento especializado</span>
+          <h2>Servicios</h2>
+        </div>
         <div class="accordion" data-accordion>
           <!-- Item 1 -->
           <article class="acc-item">
@@ -320,10 +405,118 @@
       </div>
     </section>
 
+    <!-- ===== Indicadores ===== -->
+    <section id="indicadores" class="section alt reveal">
+      <div class="container metrics-layout">
+        <div class="section-copy">
+          <span class="eyebrow">Compromisos operativos</span>
+          <h2>Indicadores de servicio</h2>
+          <p>Monitoreamos los principales KPIs de abastecimiento, soporte y cumplimiento normativo para respaldar proyectos complejos. Los datos se actualizan trimestralmente e incluyen reportes a medida para cada cliente.</p>
+          <ul class="checklist">
+            <li>Seguimiento de entregas con trazabilidad en tiempo real.</li>
+            <li>Documentación fiscal y legal lista para auditorías.</li>
+            <li>Soporte multicanal con escalamiento a especialistas.</li>
+          </ul>
+        </div>
+        <div class="card shadow metrics-card">
+          <div class="metric">
+            <div class="metric-header">
+              <span>Entregas a tiempo</span>
+              <strong>96%</strong>
+            </div>
+            <div class="progress-track">
+              <span class="progress-bar" data-progress="96"></span>
+            </div>
+            <small>Promedio nacional con monitoreo logístico 24/7.</small>
+          </div>
+          <div class="metric">
+            <div class="metric-header">
+              <span>Proyectos llave en mano</span>
+              <strong>120+</strong>
+            </div>
+            <div class="progress-track">
+              <span class="progress-bar" data-progress="90"></span>
+            </div>
+            <small>Implementados en los últimos 18 meses con equipos multidisciplinarios.</small>
+          </div>
+          <div class="metric">
+            <div class="metric-header">
+              <span>Satisfacción de clientes</span>
+              <strong>4.8/5</strong>
+            </div>
+            <div class="progress-track">
+              <span class="progress-bar" data-progress="96"></span>
+            </div>
+            <small>Evaluaciones post-servicio sobre cumplimiento y comunicación.</small>
+          </div>
+          <div class="metric">
+            <div class="metric-header">
+              <span>Cobertura nacional</span>
+              <strong>32 estados</strong>
+            </div>
+            <div class="progress-track">
+              <span class="progress-bar" data-progress="100"></span>
+            </div>
+            <small>Red de proveedores, almacenes y aliados logísticos activos.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Metodología ===== -->
+    <section id="metodologia" class="section reveal">
+      <div class="container">
+        <div class="section-header align-center">
+          <span class="eyebrow">Cómo trabajamos</span>
+          <h2>Metodología de suministro integral</h2>
+          <p class="lead">Aplicamos una ruta operativa que articula diagnóstico, abastecimiento y soporte continuo para asegurar entregables confiables y escalables.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-step">
+            <span class="step-index">01</span>
+            <h3>Diagnóstico y planeación</h3>
+            <p>Analizamos necesidades técnicas, normativas y presupuestales para validar alcances y cronogramas.</p>
+            <ul>
+              <li>Integración de requisiciones y catálogos equivalentes.</li>
+              <li>Evaluación de riesgos, inventario y cobertura nacional.</li>
+            </ul>
+          </article>
+          <article class="timeline-step">
+            <span class="step-index">02</span>
+            <h3>Selección y gestión de proveedores</h3>
+            <p>Configuramos la mezcla óptima de fabricantes, mayoristas y talleres certificados para cada proyecto.</p>
+            <ul>
+              <li>Negociación de precios, garantías y niveles de servicio.</li>
+              <li>Validación de documentación fiscal, legal y de calidad.</li>
+            </ul>
+          </article>
+          <article class="timeline-step">
+            <span class="step-index">03</span>
+            <h3>Logística y ejecución</h3>
+            <p>Coordinamos producción, importación, almacenaje y distribución con monitoreo centralizado.</p>
+            <ul>
+              <li>Control de inventarios, picking y entregas escalonadas.</li>
+              <li>Instalación y puesta en marcha con equipos especializados.</li>
+            </ul>
+          </article>
+          <article class="timeline-step">
+            <span class="step-index">04</span>
+            <h3>Soporte y mejora continua</h3>
+            <p>Mantenemos asistencia postventa, garantías y analítica de resultados para evolucionar cada programa.</p>
+            <ul>
+              <li>Mesas de ayuda, servicios técnicos y reposiciones.</li>
+              <li>Reportes de KPIs, auditorías y optimización de costos.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== Capacidades ===== -->
     <section id="capacidades" class="section alt reveal">
       <div class="container grid-2">
-        <div>
+        <div class="section-copy">
+          <span class="eyebrow">Facultades operativas</span>
           <h2>Capacidades</h2>
           <p>Contamos con facultades corporativas para celebrar actos mercantiles, administrar recursos y ejecutar proyectos vinculados a nuestras líneas de negocio, incluyendo operaciones nacionales e internacionales.</p>
           <ul class="checklist">
@@ -350,7 +543,8 @@
     <!-- ===== Contacto ===== -->
     <section id="contacto" class="section reveal">
       <div class="container grid-2">
-        <div>
+        <div class="section-copy">
+          <span class="eyebrow">Trabajemos juntos</span>
           <h2>Contacto</h2>
           <p>Cuéntanos qué necesitas y un asesor te responderá. Si requieres anexar una lista de productos o especificaciones técnicas, indícalo en el mensaje.</p>
           <form id="contact-form" class="form">

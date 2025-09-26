@@ -65,11 +65,17 @@ if(navToggle){
 menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
 
 // ===== Smooth scroll (offset header) =====
-const OFFSET = 90; // coincide con header alto
+const getScrollOffset = ()=>{
+  const headerEl = document.getElementById('site-header');
+  if(!headerEl) return 96;
+  return headerEl.offsetHeight + 12;
+};
+
 function smoothScrollTo(target){
   const el = document.querySelector(target);
   if(!el) return;
-  const y = el.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+  const offset = getScrollOffset();
+  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
   window.scrollTo({top:y, behavior:'smooth'});
 }
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
@@ -86,9 +92,10 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{
 const sections = [...document.querySelectorAll('section[id]')];
 const navLinks = [...document.querySelectorAll('.menu a[href^="#"]')];
 const setActive = throttle(()=>{
+  const offset = getScrollOffset();
   let current = sections[0]?.id;
   sections.forEach(sec=>{
-    const top = sec.getBoundingClientRect().top - OFFSET - 20;
+    const top = sec.getBoundingClientRect().top - offset - 16;
     if(top <= 0) current = sec.id;
   });
   navLinks.forEach(a=>{
@@ -153,16 +160,32 @@ const statsObserver = new IntersectionObserver(entries=>{
 },{ threshold: 0.4 });
 document.querySelectorAll('.hero-stats li').forEach(li=> statsObserver.observe(li));
 
-// ===== Parallax orbs en hero =====
-const orbs = document.querySelectorAll('.hero-orb');
-window.addEventListener('mousemove', throttle((e)=>{
-  const cx = window.innerWidth/2; const cy = window.innerHeight/2;
-  const dx = (e.clientX - cx)/cx; const dy = (e.clientY - cy)/cy;
-  orbs.forEach((orb, i)=>{
-    const strength = (i+1) * 6;
-    orb.style.transform = `translate(${dx*strength}px, ${dy*strength}px)`;
-  })
-}, 40));
+// ===== Progress bars (Indicadores) =====
+const progressBars = [...document.querySelectorAll('.progress-bar[data-progress]')];
+if(progressBars.length){
+  const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  const setProgress = (bar)=>{
+    const raw = Number(bar.dataset.progress || 0);
+    const value = Number.isFinite(raw) ? Math.max(0, Math.min(raw, 100)) : 0;
+    bar.style.width = `${value}%`;
+  };
+
+  if(prefersReduced){
+    progressBars.forEach(setProgress);
+  }else{
+    progressBars.forEach(bar=>{ bar.style.width = '0%'; });
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const bar = entry.target;
+          requestAnimationFrame(()=> setProgress(bar));
+          observer.unobserve(bar);
+        }
+      });
+    },{ threshold:0.5, rootMargin:'0px 0px -10% 0px' });
+    progressBars.forEach(bar=> observer.observe(bar));
+  }
+}
 
 // ===== Back to top =====
 const backToTop = document.createElement('button');
