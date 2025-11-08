@@ -52,33 +52,19 @@
 
     <!-- ===== Hero ===== -->
     <section id="inicio" class="hero hero-vexa">
-      <video
-        class="hero-video"
-        src="./img/hero-bg.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="./img/hero-bg.mp4" type="video/mp4" />
+      </video>
       <div class="hero-gradient"></div>
-      <div class="hero-visuals" aria-hidden="true">
-        <span class="hero-orb orb-1"></span>
-        <span class="hero-orb orb-2"></span>
-        <span class="hero-orb orb-3"></span>
-        <span class="hero-spark spark-1"></span>
-        <span class="hero-spark spark-2"></span>
-        <span class="hero-spark spark-3"></span>
-        <span class="hero-spark spark-4"></span>
-        <span class="hero-spark spark-5"></span>
-      </div>
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <div class="hero-copy-panel"></div>
+
+      <div class="hero-inner container">
+        <!-- Bloque izquierdo: texto -->
+        <div class="hero-text">
           <span class="hero-eyebrow"
-            >Distribución mayorista • Servicios llave en mano</span
+            >DISTRIBUCIÓN MAYORISTA • SERVICIOS LLAVE EN MANO</span
           >
           <h1>
-            <span class="highlight">Grupo Comercial Vexa</span> abastece
+            Grupo Comercial <span class="highlight">Vexa</span> abastece
             proyectos empresariales y gubernamentales con logística, tecnología
             y gestoría especializada
           </h1>
@@ -87,24 +73,30 @@
             corporativos para entregar soluciones completas: catálogo amplio,
             documentación en regla y acompañamiento experto en cada etapa.
           </p>
+        </div>
+
+        <div class="hero-stats-box">
           <ul class="hero-stats">
             <li>
-              <strong>+1 000</strong>
-              <span>Líneas y familias de producto</span>
+              <strong data-target="15">15</strong>
+              <span>Años de experiencia en el mercado</span>
             </li>
             <li>
-              <strong>24</strong>
-              <span>Horas promedio de respuesta a licitaciones</span>
+              <strong data-target="300">300</strong>
+              <span>Clientes satisfechos en sector público y privado</span>
             </li>
             <li>
-              <strong>360°</strong>
-              <span>Comercio • Tecnología • Gestoría</span>
+              <strong data-target="50">50</strong>
+              <span>Convenios y contratos activos con gobierno y empresas</span>
+            </li>
+            <li>
+              <strong data-target="800">800</strong>
+              <span>Productos y servicios en nuestro catálogo integral</span>
             </li>
           </ul>
         </div>
       </div>
     </section>
-
     <!-- ===== Nosotros ===== -->
     <section id="nosotros" class="section reveal">
       <div class="container grid-2">
