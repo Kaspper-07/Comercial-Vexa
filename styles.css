@@ -932,34 +932,44 @@ input:focus,textarea:focus{
 }
 
 /* ===== Responsive ===== */
-/* --- Responsive para Hero --- */
-@media(max-width:1100px){
-  .hero-inner{
-      /* En pantallas medianas, mantenemos una altura adaptable, pero reducimos el padding vertical */
-      min-height: auto; 
-      padding: 120px 4vw 60px; 
-      gap: 30px;
-  }
-  .hero-text {
-      padding: 30px 40px;
-  }
-}
+
+/* Estilos para pantallas pequeñas (Mobile) */
 @media(max-width:720px){
+  
+  /* Contenedor principal: Aumentamos el padding para la separación de la pantalla */
   .hero-inner{
-      padding: 100px 20px 40px; 
+      padding: 100px 30px 40px; 
       gap: 25px;
   }
+  
+  /* Bloque de texto (CORRECCIÓN CLAVE: Reducir ancho y añadir margen) */
   .hero-text {
+      /* Limitamos el ancho a un porcentaje para que no ocupe todo el espacio */
+      max-width: 90%; 
+      width: 100%;
+      /* Centramos el bloque. Esto crea el espacio visible en los laterales */
+      margin: 0 auto; 
       padding: 25px 20px;
   }
+  
   .hero-text h1 {
       font-size: clamp(1.8rem, 7vw, 2.4rem);
   }
+  
+  /* Las estadísticas también deben ser más estrechas, si es necesario */
+  .hero-stats-box {
+      max-width: 90%; /* Limita el ancho del contenedor de stats */
+      margin: 0 auto; /* Centra el contenedor de stats */
+  }
+
+  /* ... el resto de la media query se mantiene ... */
+
   .hero-stats {
       flex-direction: column; 
       gap: 12px;
   }
 }
+
 @media(max-width:980px){
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:repeat(2,1fr)}
