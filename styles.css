@@ -1,7 +1,3 @@
-/* ==========================================
-   Grupo Comercial Vexa – Rediseño 2024
-   ========================================== */
-
 :root{
   --brand:#0f4c81;
   --brand-dark:#0a3457;
@@ -219,8 +215,7 @@ textarea:focus-visible{
   background:rgba(255,255,255,.16);
 }
 
-/* ===== Hero (Bloque Corregido) ===== */
-/* ===== Hero (Bloque Final Corregido) ===== */
+/* ===== Hero ===== */
 .hero {
   position: relative;
   overflow: hidden;
@@ -263,13 +258,8 @@ textarea:focus-visible{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  
-  /* CAMBIO CLAVE 1: Ajuste de Altura */
-  /* min-height: 100vh; se reemplaza por calc(100vh - [Altura del header]) para que quepa */
-  /* Asumiendo que tu header tiene unos 100px de altura */
-  min-height: calc(100vh - 100px); 
-  
+  justify-content: center;  
+  min-height: calc(100vh - 100px); /* Ajusta la altura para descontar el header */
   padding: 100px 6vw 60px; /* Reducimos el padding superior para ahorrar espacio */
   gap: 40px; /* Reducimos el espacio entre el texto y las estadísticas */
   position: relative;
@@ -282,7 +272,7 @@ textarea:focus-visible{
   width: 100%;
   background: rgba(15, 35, 70, 0.92); 
   border-radius: 28px;
-  padding: 40px 50px; /* Reducimos el padding interno del bloque de texto */
+  padding: 40px 50px;
   box-shadow: 0 24px 50px rgba(9, 25, 42, 0.65); 
   line-height: 1.5; /* Ligeramente más compacto */
   color: #eaf3ff;
@@ -292,9 +282,7 @@ textarea:focus-visible{
 
 /* Título principal (AJUSTE DE TAMAÑO ADICIONAL) */
 .hero-text h1 {
-  font-family: var(--font-heading);
-  /* CAMBIO CLAVE 2: Reducción adicional del tamaño máximo */
-  font-size: clamp(2.2rem, 3.5vw + 0.5rem, 3rem); 
+  font-family: var(--font-heading);  font-size: clamp(2.2rem, 3.5vw + 0.5rem, 3rem); 
   line-height: 1.2; /* Más compacto */
   margin-bottom: 20px; /* Menos margen */
   color: #ffffff;
@@ -307,7 +295,7 @@ textarea:focus-visible{
 
 /* Párrafo */
 .hero-text p {
-  font-size: clamp(1rem, 1.4vw, 1.2rem); /* Ligeramente más pequeño */
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
   color: rgba(230, 240, 255, 0.9);
   margin-bottom: 25px; /* Menos margen */
   max-width: 100%; 
@@ -316,7 +304,7 @@ textarea:focus-visible{
 /* === Bloque de estadísticas (Optimizamos los márgenes) === */
 .hero-stats-box {
   width: 100%;
-  max-width: 1000px; /* Reducimos el ancho máximo ligeramente */
+  max-width: 1000px;
 }
 
 .hero-stats {
@@ -330,11 +318,11 @@ textarea:focus-visible{
 }
 
 .hero-stats li {
-  flex: 1 1 180px; /* Ligeramente más pequeño */
+  flex: 1 1 180px;
   text-align: center;
   background: rgba(255, 255, 255, 0.1); 
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px; /* Borde ligeramente menor */
+  border-radius: 16px;
   padding: 20px 15px; /* Menor padding */
   box-shadow: 0 10px 25px rgba(10, 52, 87, 0.3); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -360,52 +348,6 @@ textarea:focus-visible{
   color: rgba(255, 255, 255, 0.85);
   display: block;
 }
-
-/* Opcional: Estilos para las animaciones visuales si las quieres mantener */
-.hero-visuals{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:2;
-}
-.hero-orb{
-  position:absolute;
-  display:block;
-  width:360px;
-  height:360px;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(125,211,252,.35),rgba(15,76,129,.12) 68%,transparent 78%);
-  filter:blur(12px);
-  opacity:.75;
-  animation:heroOrbDrift 28s ease-in-out infinite;
-}
-.hero-orb::after{
-  content:"";
-  position:absolute;
-  inset:18%;
-  border-radius:inherit;
-  background:radial-gradient(circle,rgba(255,255,255,.45),transparent 70%);
-  opacity:.6;
-}
-.hero-orb.orb-1{top:-120px;left:-80px;animation-delay:-6s;}
-.hero-orb.orb-2{bottom:-160px;right:-140px;animation-delay:-12s;background:radial-gradient(circle at 70% 30%,rgba(30,200,165,.4),rgba(15,76,129,.18) 70%,transparent 85%);width:420px;height:420px;}
-.hero-orb.orb-3{top:140px;right:12%;animation-delay:-3s;width:260px;height:260px;opacity:.6;}
-.hero-spark{
-  position:absolute;
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.85),rgba(125,211,252,.2));
-  box-shadow:0 0 18px rgba(125,211,252,.65);
-  opacity:0;
-  animation:heroSpark 12s linear infinite;
-}
-.hero-spark.spark-1{top:18%;left:24%;animation-delay:0s}
-.hero-spark.spark-2{top:36%;right:18%;animation-delay:-3s}
-.hero-spark.spark-3{bottom:26%;left:22%;animation-delay:-6s}
-.hero-spark.spark-4{top:12%;right:32%;animation-delay:-8s}
-.hero-spark.spark-5{bottom:12%;right:26%;animation-delay:-11s}
 
 /* ===== Sections & layout ===== */
 .eyebrow{
@@ -875,10 +817,10 @@ input:focus,textarea:focus{
 }
 .footer-inner{
   display:flex;
+  flex-direction: column;
   align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
+  justify-content: center;
+  text-align: center;
 }
 .footer .mini{display:flex;gap:18px;font-size:.9rem}
 .footer .mini a{color:var(--muted)}
@@ -933,43 +875,6 @@ input:focus,textarea:focus{
 
 /* ===== Responsive ===== */
 
-/* Estilos para pantallas pequeñas (Mobile) */
-@media(max-width:720px){
-  
-  /* Contenedor principal: Aumentamos el padding para la separación de la pantalla */
-  .hero-inner{
-      padding: 100px 30px 40px; 
-      gap: 25px;
-  }
-  
-  /* Bloque de texto (CORRECCIÓN CLAVE: Reducir ancho y añadir margen) */
-  .hero-text {
-      /* Limitamos el ancho a un porcentaje para que no ocupe todo el espacio */
-      max-width: 90%; 
-      width: 100%;
-      /* Centramos el bloque. Esto crea el espacio visible en los laterales */
-      margin: 0 auto; 
-      padding: 25px 20px;
-  }
-  
-  .hero-text h1 {
-      font-size: clamp(1.8rem, 7vw, 2.4rem);
-  }
-  
-  /* Las estadísticas también deben ser más estrechas, si es necesario */
-  .hero-stats-box {
-      max-width: 90%; /* Limita el ancho del contenedor de stats */
-      margin: 0 auto; /* Centra el contenedor de stats */
-  }
-
-  /* ... el resto de la media query se mantiene ... */
-
-  .hero-stats {
-      flex-direction: column; 
-      gap: 12px;
-  }
-}
-
 @media(max-width:980px){
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:repeat(2,1fr)}
@@ -1002,13 +907,30 @@ input:focus,textarea:focus{
   .topbar-inner{flex-direction:column;align-items:flex-start;gap:6px}
 }
 @media(max-width:720px){
+  .hero-inner{
+      padding: 100px 30px 40px; 
+      gap: 25px;
+  }
+  .hero-text {
+      max-width: 90%; 
+      margin: 0 auto; 
+      padding: 25px 20px;
+  }
+  .hero-text h1 {
+      font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+  .hero-stats-box {
+      max-width: 90%;
+      margin: 0 auto;
+  }
+  .hero-stats {
+      flex-direction: column; 
+      gap: 12px;
+      min-width: unset;
+      width:100%;
+  }
   .grid-3{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .hero-stats{gap:12px}
-  .hero-stats li{min-width:unset;width:100%}
-  .hero-figure img{height:260px}
-  .hero-note{max-width:100%}
-  .hero-copy h1{font-size:clamp(2rem,6vw,3rem)}
   .sector-grid{grid-template-columns:1fr}
   .timeline{grid-template-columns:1fr}
   .timeline::before{display:none}

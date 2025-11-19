@@ -62,7 +62,12 @@ if(navToggle){
   });
 }
 // Cerrar menú al seleccionar un link
-menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+menu?.querySelectorAll('a').forEach(link => {
+  // Solo cerrar si es un enlace de ancla para la misma página
+  if (link.getAttribute('href')?.startsWith('#')) {
+    link.addEventListener('click', closeMenu);
+  }
+});
 
 // ===== Smooth scroll (offset header) =====
 const getScrollOffset = ()=>{
@@ -128,24 +133,21 @@ function animateCounter(el, cfg){
 }
 const statMap = new Map();
 document.querySelectorAll('.hero-stats strong').forEach(str=>{
-  const original = (str.textContent || '').trim();
-  const digits = original.match(/[0-9]+/g);
-  if(!digits){
-    str.dataset.static = original;
-    return;
+  const originalText = (str.textContent || '').trim();
+  // Usamos una regex para capturar prefijo, número y sufijo de forma más robusta.
+  // Ej: "4.8/5" -> prefix: '', value: 4.8, suffix: '/5'
+  // Ej: "120+" -> prefix: '', value: 120, suffix: '+'
+  const match = originalText.match(/^(.*?)([0-9,.]+)(.*)$/);
+
+  if (match) {
+    const [, prefix, numStr, suffix] = match;
+    const numericValue = parseFloat(numStr.replace(/,/g, ''));
+    if (Number.isFinite(numericValue)) {
+      str.textContent = `${prefix}0${suffix}`;
+      statMap.set(str, { value: numericValue, prefix, suffix });
+    }
   }
-  const numericValue = Number(digits.join(''));
-  if(!Number.isFinite(numericValue)){
-    str.dataset.static = original;
-    return;
-  }
-  const firstIdx = original.indexOf(digits[0]);
-  const lastChunk = digits[digits.length - 1];
-  const lastIdx = original.lastIndexOf(lastChunk) + lastChunk.length;
-  const prefix = original.slice(0, firstIdx);
-  const suffix = original.slice(lastIdx);
-  str.textContent = `${prefix}0${suffix}`;
-  statMap.set(str, { value:numericValue, prefix, suffix });
+  // Si no hay número, no se hace nada y se queda el texto original.
 });
 const statsObserver = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -190,6 +192,8 @@ if(progressBars.length){
 // ===== Back to top =====
 const backToTop = document.createElement('button');
 backToTop.id = 'backToTop';
+backToTop.type = 'button';
+backToTop.setAttribute('aria-label', 'Volver al inicio de la página');
 backToTop.innerHTML = '↑';
 document.body.appendChild(backToTop);
 backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
@@ -240,16 +244,33 @@ function toast(msg, ok=true){
   t.style.boxShadow='0 8px 24px rgba(0,0,0,.15)'; t.style.zIndex='2000';
   document.body.appendChild(t); setTimeout(()=> t.remove(), 3200);
 }
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
+  const submitBtn = form.querySelector('button[type="submit"]');
   const data = Object.fromEntries(new FormData(form).entries());
+
   if(!data.nombre || !data.correo || !data.mensaje){ toast('Por favor completa todos los campos', false); return; }
+  if (!emailRegex.test(data.correo)) { toast('Por favor, introduce un correo electrónico válido.', false); return; }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
   try{
     // Reemplazar por tu endpoint real
-    // await fetch('/api/contact', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(data) });
+    // Simulación de llamada a API
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    // await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
     toast('¡Mensaje enviado! Te contactaremos pronto.');
     form.reset();
-  }catch(err){ toast('No se pudo enviar. Intenta más tarde.', false); }
+  }catch(err){
+    toast('No se pudo enviar. Intenta más tarde.', false);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar';
+  }
 });
 
 // ===== Accesibilidad extra =====
